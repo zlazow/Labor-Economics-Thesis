@@ -1,0 +1,8 @@
+	 (1) handicap1d	 (2) handicap1a	 (3) handicap1b	 (4) handicap1c
+	           b/se	           b/se	           b/se	           b/se
+hand_i	         -0.018	          0.158	          0.089	         -0.088
+	          0.015	          0.021	          0.020	          0.022
+mean_handicap	        -10.803	               	               	               
+	          1.629	               	               	               
+r2	          0.542	          0.124	          0.162	          0.254
+N	           8801	           8801	           8801	           8801

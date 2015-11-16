@@ -1,0 +1,6 @@
+	 (1) handicap1c	(2) drivdist_ols	(3) greenrd_ols	  (4) putts_ols	(5) first_year_ols	(6) namelen_ols
+	           b/se	           b/se	           b/se	           b/se	           b/se	           b/se
+hand_i	         -0.088	         -0.081	         -0.071	         -0.080	         -0.050	         -0.063
+	          0.022	          0.021	          0.022	          0.023	          0.020	          0.020
+r2	          0.254	          0.382	          0.163	          0.251	          0.167	          0.035
+N	           8801	           8646	           8646	           8646	           8646	           8646
