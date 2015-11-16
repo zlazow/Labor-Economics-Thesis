@@ -1,0 +1,195 @@
+@charset "UTF-8";
+
+/*
+ * Web Fonts from fontspring.com
+ *
+ * All OpenType features and all extended glyphs have been removed.
+ * Fully installable fonts can be purchased at http://www.fontspring.com
+ *
+ * The fonts included in this stylesheet are subject to the End User License you purchased
+ * from Fontspring. The fonts are protected under domestic and international trademark and 
+ * copyright law. You are prohibited from modifying, reverse engineering, duplicating, or
+ * distributing this font software.
+ *
+ * (c) 2010-2012 Fontspring
+ *
+ *
+ *
+ *
+ * The fonts included are copyrighted by the vendor listed below.
+ *
+ * Vendor:      Mostardesign
+ * License URL: http://www.fontspring.com/fflicense/mostardesign
+ *
+ *
+ */
+ 
+@font-face {
+    font-family: 'IntervalSansProMediumRegular';
+    src: url('../fonts/interval_medium-webfont.eot');
+    src: url('../fonts/interval_medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/interval_medium-webfont.woff') format('woff'),
+         url('../fonts/interval_medium-webfont.ttf') format('truetype'),
+         url('../fonts/interval_medium-webfont.svg#IntervalSansProMediumRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#header {
+	background: #1658a6;
+	background-image: url(../images/header_1.jpg);
+	background-repeat: no-repeat;
+	height: 100px;
+}
+#containerHeader { /* Header space */
+	position: relative;
+	width: 1024px;
+	height: 121px;
+	margin: 0 auto; /*  Centers head */
+	z-index: 200;
+	border-left: solid 1px #1658a6; /* Added for white background */
+	border-right: solid 1px #1658a6; /* Added for white background */
+}
+#nav {
+	background: #1658a6;
+	background-image: url(../images/header_2.jpg); /* Bottom part of logo in Nav. Repeated */
+	background-repeat: repeat-x;
+	height: 21px;
+	width: 100%; /* 1024px */
+}
+#menu {
+	position: absolute;
+	top: 100px;
+	right: 0;
+	left: 294px;
+}
+#menu, #menu ul {
+	font: 13px 'IntervalSansProMediumRegular', Arial, Helvetica, sans-serif;
+	letter-spacing: .1em;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-align: center;
+	white-space: nowrap;
+}
+#menu li {
+	float: left;
+	background: #005ea7;
+	background-image: url(../images/headerBkrndUP.jpg);
+	background-repeat: repeat-x;
+	height: 21px;
+}
+#menu a {
+	display: block;
+	color: #FFF;
+	padding: 2px; /* Controls vertrical for top level nav type */
+	text-decoration: none;
+	border-left: 2px solid #FFF;
+	border-bottom: none;
+	height: 20px; /* Offest 2px due to padding above */
+}
+#menu li ul li { /* Controls the dropdown menus */
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: .8em !important;
+	letter-spacing: 0em;
+	line-height: 1.5em;
+}
+#firstNav { /* Top nav box */
+	width: 60px;
+	margin-right: -3px;
+}
+#firstNav ul li{ /* Drop down menu width */
+	width: 166px;
+}
+#secondNav {
+	width: 88px;
+	margin-right: -3px;
+}
+#secondNav ul li {
+	width: 214px;
+}
+#thirdNav {
+	width: 140px;
+	margin-right: -3px;
+}
+#thirdNav ul li {
+	width: 206px;
+}
+#fourthNav {
+	width: 82px;
+	margin-right: -3px;
+}
+#fourthNav ul li {
+	width: 146px;
+}
+#fifthNav {
+	width: 62px;
+	margin-right: -3px;
+}
+#fifthNav ul li {
+	width: 146px;
+}
+#sixthNav {
+	width: 100px;
+	margin-right: -3px;
+}
+#sixthNav ul li {
+	width: 176px;
+}
+#seventhNav {
+	width: 92px;
+	border-right: 2px solid #FFF;
+}
+#seventhNav ul {
+	margin-left: -85px; /* Moves dropdown menu to left */
+}
+#seventhNav ul li {
+	width: 176px;
+}
+#menu a:hover {
+	color: #FFF;
+}
+#menu li ul {
+	position: absolute;
+	left: -999em;
+	width: 176px;
+	top: 21px;
+}
+#menu li:hover ul, #menu li ul:hover {
+	left:auto;
+}
+#menu li ul li {
+	font-size: .9em;
+	border-bottom: 1px solid #005ea7;
+	border-right: 1px solid #005ea7;
+	border-left: 1px solid #005ea7;
+	text-align: left;
+	background: #d6effc;
+}
+#menu li ul li a {
+	border-right: none;
+	border-left: none;
+	font-weight: normal;
+	height: 30px;
+	color: #005ea7;
+	padding-left: 6px;
+}
+#menu li:hover {
+	background: #8fb4d7;
+	background-image: url(../images/headerBkrndOV.jpg);
+	background-repeat: repeat-x;
+}
+#menu li ul li:hover {
+	background: #005ea7;
+	border-right: 1px solid #005ea7;
+}
+#menu li ul li a:hover {
+	color: #FFF;
+	height: 30px;
+	padding-left: 6px;
+}
+
+/* Fix for Opera navigation bar depth */
+x:-o-prefocus, #menu a {
+	height: 17px;
+}

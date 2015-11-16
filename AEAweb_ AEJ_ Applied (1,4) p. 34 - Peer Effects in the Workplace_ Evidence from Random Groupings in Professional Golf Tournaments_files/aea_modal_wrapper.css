@@ -1,0 +1,76 @@
+.aea_modal_wrapper{
+	position:absolute;
+	width:100%;
+	height:100%;
+	display:none;
+	left:0 !important;
+}
+
+.aea_modal_inner_wrapper{
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+
+.aea_modal_background{
+	position:absolute;
+	left:0 !important;
+	top:0;
+	width:100%;
+	height:100%;
+	background:url("/images/aea-modal-background-white.png");
+	z-index:100 !important;
+}
+
+.aea_modal_content{
+	position:relative;
+	margin:0 auto;
+	z-index:200 !important;
+	top:20px;
+	border:transparent 1px solid;
+}
+
+.aea_modal_content #content_inner{
+	background-color:#FFFFFF !important;
+	-webkit-box-shadow:0 2px 7px rgba(0, 0, 0, 0.9), 0 0 50px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow:0 2px 7px rgba(0, 0, 0, 0.9), 0 0 50px rgba(0, 0, 0, 0.1) inset;
+	box-shadow:0 2px 7px rgba(0, 0, 0, 0.9), 0 0 50px rgba(0, 0, 0, 0.1) inset;
+}
+
+.aea_modal_content .field_group_four{
+	background-color:transparent !important;
+}
+
+.aea_modal_content .form_wrapper{
+	-webkit-box-shadow:none !important;
+	-moz-box-shadow:none !important;
+	box-shadow:none !important;
+	background-color:transparent !important;
+}
+
+.aea_modal_toolbar{
+	margin:10px;
+	margin-bottom:0;
+	margin-top:0;
+	padding-bottom:10px;
+	padding-top:10px;
+}
+
+.aea_modal_content #content_body{
+	padding:10px;
+}
+
+.aea_modal_content #content_body h1,h2,h3,h4,h5{
+	margin-top:0;
+}
+
+.aea_modal_toolbar #close_button{
+	display:inline-block;
+	margin:0;
+	padding:0;
+	float:right;
+}
+
+.aea_hidden_modal_content{
+	display:none;
+}

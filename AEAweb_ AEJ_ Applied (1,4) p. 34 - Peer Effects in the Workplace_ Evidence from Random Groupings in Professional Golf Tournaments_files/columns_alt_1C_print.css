@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+html {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+-webkit-print-color-adjust:exact;
+padding: 0;
+margin: 0;
+font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+font-size: 11px;
+color: #333;
+background-color: #22316C;
+}
+
+/*  Hides search section */
+#formRt {
+	display: none;
+}
+#formRt2 {
+	display: none;
+}
+.contentRtSearch {
+	border-bottom: none;
+	margin: 10px 0;
+	padding: 0;
+}
+
+
+/*  Print code only for Opera */
+x:-o-prefocus, #mainContent3 { /* */
+	background-image: none;
+}
+x:-o-prefocus, #containerHeader {
+	height: auto;
+}
+x:-o-prefocus, #header {
+	min-width: 560px;
+	min-height: 110px;
+	background-position: top left;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url(../images/header_1_opera.jpg);	
+}
+x:-o-prefocus, #nav {
+	display: none;
+}
+x:-o-prefocus, #menu {
+	display: none;
+}

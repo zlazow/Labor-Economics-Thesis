@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+html {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+-webkit-print-color-adjust:exact;
+padding: 0;
+margin: 0;
+font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+font-size: 13px;
+color: #333;
+background-color: #22316C;
+}
+
+/*  Hides search section */
+#formRt {
+	display: none;
+}
+#formRt2 {
+	display: none;
+}
+.contentRtSearch {
+	border-bottom: none;
+	margin: 10px 0;
+	padding: 0;
+}
+
+/* FireFox printing fixes */
+
+@-moz-document url-prefix() {
+	#contentRt {
+		float: none;
+		position: absolute;
+		left: 809px;
+		top: 124px;
+	}
+}

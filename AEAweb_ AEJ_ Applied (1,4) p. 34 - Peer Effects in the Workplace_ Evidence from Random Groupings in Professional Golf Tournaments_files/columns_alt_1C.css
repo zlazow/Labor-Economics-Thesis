@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+#container3col {
+	background-image: url(../images/bkrnd2ColR.gif);
+}
+#contentLft {
+	display: none;
+}
+#contentRt {
+	display: none;
+}
+#mainContent3 {
+	width: 964px;
+	min-height: 600px; /* Check to make sure this works in IE */
+	background-color: #FFF;
+	background-image: url(../images/header_3-3col.jpg);
+	background-repeat: no-repeat;
+	background-position: 188px 0;
+}

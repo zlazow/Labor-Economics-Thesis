@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+body {
+	font: .8em/1.4 Verdana, Arial, Helvetica, sans-serif;
+	background-color: #22316c;
+	margin: 0;
+	padding: 0;
+	color: #333;
+	background-color: #FFF;
+}
+#container3col { 
+	width: 1024px; /*  Container width 1024 */
+	background-color: #FFF;  /* Added for white background */
+	margin: 0 auto;
+	z-index: 50;
+	border-left: solid 1px #1658a6;
+	border-right: solid 1px #1658a6;
+}
+#searchBox1 {
+	text-align: center;
+	padding: 1em 0;
+	margin-bottom: 1em;
+	border-top: solid 1px #666;
+	border-bottom: solid 1px #666;
+}
+.headline1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 1.6em;
+	color: #9A272D;
+	padding: .6em 0 .3em 0;
+	margin-bottom: .2em;
+	line-height: 1.2em;
+	border-bottom: solid 3px #666;
+}
+.topText {
+	font-size: 1em;
+	line-height: 1.3em;
+	padding: em 0 .8em;
+}
+.topText p {
+	margin: .5em 0;
+}
+#bottomSlice{ /* This solidfies the center unit */
+	position: relative;
+	height: 0;
+	clear: both;
+}
+a:link, a:visited {
+	color: #9A272D;
+	text-decoration: underline;
+}
+a:hover, a:active {
+	color: #1d5399;
+	text-decoration: underline;
+}
+
+/* From older site */
+
+/* It is anticipated that there will be a
+&lt;p&gt; tag wrapping the first paragraph
+after using H1  */
+h1 {
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
+font-size: 18px;
+color: #9A272D;
+padding: 0;
+margin: 1em 0 0.2em 0;
+border-bottom: solid 3px #666;
+}
+
+h2 {
+font-size: 14px;
+color: #00358b;
+}
+
+h3 {
+font-size: 16px;
+font-style: italic;
+color: #00358b;
+}
+
+h4 {
+font-size: 13px;
+color: #9A272D;
+}
+
+h5 {
+font-size: 13px;
+font-style: italic;
+color: #9A272D;
+}
+
+h6 {
+font-size: 12px;
+font-style: italic;
+font-weight: normal;
+color: #000;
+}
+
+table.middle_table {
+width: 558px;
+}
+
+table.main_2col_table {
+width: 90%;
+}
+
+/*  Footer */
+#footer {
+	position: relative;
+	border-top: solid 1px #1658a6;
+	border-bottom: solid 1px #1658a6; /* Added for white background */
+	background-color: #f0f8fc;
+	height: 20px;
+	text-align: center;
+	letter-spacing: 0.3em;
+	background-color: #FFF;
+	padding: 10px 0 ;
+	clear: both;
+}
+#footer a:link, #footer a:visited{
+	color: #666;
+}
+#footer a:hover, #footer a:active {
+	color: #3c8ce8;  /* 406187 */
+}
