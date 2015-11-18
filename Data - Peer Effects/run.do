@@ -12,32 +12,24 @@ est clear
 *
 ****************
 
-global PATH "."
-global DATA "${PATH}/"
-global OUTPUT "${PATH}/"
-global SRC "${PATH}/"
+global PATH "N:\Thesis\Data\"
 
 set more off
 set mem 300m
 set matsize 3000
 
-use ${DATA}pga_data
+use ${PATH}pga_data
 
-do ${SRC}table1
+do ${PATH}table1
 
 **
 * De-means data and creates other variables used in analysis
 **
-do ${SRC}make_derived_variables
+do ${PATH}make_derived_variables
 
-do ${SRC}tables_2_and_3
-do ${SRC}tables_4_and_5
-do ${SRC}table6
-do ${SRC}table7
-do ${SRC}table8
-do ${SRC}table4_me
-
-
-
-
-
+do ${PATH}tables_2_and_3
+do ${PATH}tables_4_and_5
+do ${PATH}table6
+do ${PATH}table7
+do ${PATH}table8
+do ${PATH}table4_me
