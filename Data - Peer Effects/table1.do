@@ -1,6 +1,6 @@
 
 clear
-use pga_data.dta
+use ${DATA}pga_data
 
 
 
@@ -12,21 +12,27 @@ set more off
 
 preserve
 
+
+//Creating an empty matrix that has 20 rows, 12 columns, with each cell initialized to 0.
 matrix table1 = J(20, 12, 0)
-local i = 1
+local i = 1 //just used for the for loop below. Not sure why they put it here...
+//Capture terminates errors
 capture drop *Xcat*
 
 
 **
 * use "catnum" instead of "cat" for summary statistics
 **
-
+//This is all one line, generating catnum variable
 gen catnum = .
 replace catnum = 1   if cat == "1"  & missing(catnum)
 replace catnum = 1.5 if cat == "1a" & missing(catnum)
 replace catnum = 2   if cat == "2"  & missing(catnum)
 replace catnum = 3   if cat == "3"  & missing(catnum)
 
+/*handXcat = handicap interacting with category
+handicap is the players handicap
+hand_i is the avg of playing partners handicap */
 gen handXcat1 = handicap if (catnum == 1)
 gen handXcat1a = handicap if (catnum == 1.5)
 gen handXcat2 = handicap if (catnum == 2)
@@ -65,7 +71,7 @@ foreach var of varlist scorerd score_i handicap hand_i drivdist putts greenrd fi
 
 drop _all
 svmat table1
-outsheet using ${OUTPUT}table1.txt, replace
+outsheet using ${DATA}table1.txt, replace
 restore
 
 preserve
