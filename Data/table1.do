@@ -1,6 +1,6 @@
 
 clear
-use ${DATA}pga_data
+use ${PATH}pga_data
 
 
 
