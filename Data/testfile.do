@@ -5,7 +5,7 @@ global PATH "N:\Thesis\Data\"
 set more off
 clear
 use ${PATH}pga_data
-preserve 
+
 
 //Capture terminates errors
 sort cat
@@ -25,7 +25,7 @@ summ fairrd, meanonly
 replace fairrd = fairrd - r(mean)
 summ greenrd, meanonly
 replace greenrd = greenrd - r(mean)
-
+preserve 
 
 bys player year: keep if _n == 1
 bys player year: assert(handicap[1] == handicap[_N])
@@ -36,9 +36,10 @@ local hand10 = r(p10)
 local hand25 = r(p25)
 local hand90 = r(p90)
 local hand99 = r(p99)
-restore
+restore 
 
 gen cat1_max = .
+gen cat1_scoremax = .
 gen cat1_min = . 
 gen cat1_top1 = .
 gen cat1_top5 = .
@@ -55,6 +56,12 @@ by grouping_id: replace cat1_max = cond( (handicap[1] >= handicap[2] & handicap[
 by grouping_id: replace cat1_max = handicap[2] if _n == 1 & _N == 2 & cat == "1"
 by grouping_id: replace cat1_max = handicap[1] if _n == 2 & _N == 2 & cat == "1"
 
+by grouping_id: replace cat1_scoremax = cond( (scorerd[2] >= scorerd[3] & scorerd[2] < .) | missing(scorerd[3]), scorerd[2], scorerd[3]) if _n == 1 & _N == 3 & cat == "1"
+by grouping_id: replace cat1_scoremax= cond( (scorerd[1] >= scorerd[3] & scorerd[1] < .) | missing(scorerd[3]), scorerd[1], scorerd[3]) if _n == 2 & _N == 3 & cat == "1"
+by grouping_id: replace cat1_scoremax = cond( (scorerd[1] >= scorerd[2] & scorerd[1] < .) | missing(scorerd[2]), scorerd[1], scorerd[2]) if _n == 3 & _N == 3 & cat == "1"
+by grouping_id: replace cat1_scoremax = scorerd[2] if _n == 1 & _N == 2 & cat == "1"
+by grouping_id: replace cat1_scoremax = scorerd[1] if _n == 2 & _N == 2 & cat == "1"
+
 by grouping_id: replace cat1_min = cond(handicap[2] < handicap[3], handicap[2], handicap[3]) if _n == 1 & _N == 3 & cat == "1"
 by grouping_id: replace cat1_min = cond(handicap[1] < handicap[3], handicap[1], handicap[3]) if _n == 2 & _N == 3 & cat == "1"
 by grouping_id: replace cat1_min = cond(handicap[1] < handicap[2], handicap[1], handicap[2]) if _n == 3 & _N == 3 & cat == "1"
@@ -64,7 +71,7 @@ by grouping_id: replace cat1_min = handicap[1] if _n == 2 & _N == 2 & cat == "1"
 by grouping_id: replace cat1_top1 = handicap[2] < `hand1' | handicap[3] < `hand1' if _n == 1 & _N == 3 & cat == "1"
 by grouping_id: replace cat1_top1 = handicap[1] < `hand1' | handicap[3] < `hand1' if _n == 2 & _N == 3 & cat == "1"
 by grouping_id: replace cat1_top1 = handicap[1] < `hand1' | handicap[2] < `hand1' if _n == 3 & _N == 3 & cat == "1"
-by grouping_id: replace cat1_top1 = handicap[1] < `hand1' if _n == 2 & _N == 2 & cat == "1"
+by grouping_id: replace cat1_top1 = handicap[1] < `hand1' if _n == 2 & _N == 2 & cat == "1"	
 by grouping_id: replace cat1_top1 = handicap[2] < `hand1' if _n == 1 & _N == 2 & cat == "1"
 
 
@@ -356,7 +363,7 @@ foreach var of varlist hand3_iXdiff cat3_maxXdiff cat3_minXdiff {
  areg scorerd handicap `var', $options 
  est store `var'
 }
-*/
+
 gen p_superstar = tigeringrp
 gen superstar = istiger
 by grouping_id: replace p_superstar = 1 if _n == 1 & (player[2] == "phil mickelson" | player == "vijay singh" | player == "ernie els" | player == "retief goosen" ) | (player[3] == "phil mickelson" | player == "vijay singh" | player == "ernie els" | player == "retief goosen")
@@ -367,10 +374,13 @@ by grouping_id: replace p_superstar = 1 if _n == 3 & (player[1] == "phil mickels
 by grouping_id: replace p_superstar = 1 if _n == 3 & (player[2] == "phil mickelson" | player == "vijay singh" | player == "ernie els" | player == "retief goosen" ) | (player[3] == "phil mickelson" | player == "vijay singh" | player == "ernie els" | player == "retief goosen")
 sort player
 by player: replace superstar = 1 if player == "tiger woods" | player == "phil mickelson" | player == "vijay singh" | player == "ernie els" | player == "retief goosen"
- 
-gen psuperstarXnumyears = p_superstar * num_years
-areg scorerd handicap p_superstar hand_i num_years psuperstarXnumyears if cat=="1", $options
 
+gen psuperstarXfirst_year = p_superstar * first_year
+*xi i.round
+
+areg scorerd handicap p_superstar hand_i psuperstarXfirst_year, $options
+areg scorerd handicap p_superstar score_i psuperstarXfirst_year, $options
+areg scorerd handicap p_superstar psuperstarXfirst_year, $options
 
 
 
