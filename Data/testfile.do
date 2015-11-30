@@ -56,11 +56,11 @@ by grouping_id: replace cat1_max = cond( (handicap[1] >= handicap[2] & handicap[
 by grouping_id: replace cat1_max = handicap[2] if _n == 1 & _N == 2 & cat == "1"
 by grouping_id: replace cat1_max = handicap[1] if _n == 2 & _N == 2 & cat == "1"
 
-by grouping_id: replace cat1_scoremax = cond( (scorerd[2] >= scorerd[3] & scorerd[2] < .) | missing(scorerd[3]), scorerd[2], scorerd[3]) if _n == 1 & _N == 3 & cat == "1"
-by grouping_id: replace cat1_scoremax= cond( (scorerd[1] >= scorerd[3] & scorerd[1] < .) | missing(scorerd[3]), scorerd[1], scorerd[3]) if _n == 2 & _N == 3 & cat == "1"
-by grouping_id: replace cat1_scoremax = cond( (scorerd[1] >= scorerd[2] & scorerd[1] < .) | missing(scorerd[2]), scorerd[1], scorerd[2]) if _n == 3 & _N == 3 & cat == "1"
-by grouping_id: replace cat1_scoremax = scorerd[2] if _n == 1 & _N == 2 & cat == "1"
-by grouping_id: replace cat1_scoremax = scorerd[1] if _n == 2 & _N == 2 & cat == "1"
+by grouping_id: replace cat1_scoremin = cond(scorerd[2] < scorerd[3], scorerd[2], scorerd[3]) if _n == 1 & _N == 3
+by grouping_id: replace cat1_scoremin = cond(scorerd[1] < scorerd[3], scorerd[1], scorerd[3]) if _n == 2 & _N == 3
+by grouping_id: replace cat1_scoremin = cond(scorerd[1] < scorerd[2], scorerd[1], scorerd[2]) if _n == 3 & _N == 3 
+by grouping_id: replace cat1_scoremin = scorerd[2] if _n == 1 & _N == 2 
+by grouping_id: replace cat1_scoremin = scorerd[1] if _n == 2 & _N == 2
 
 by grouping_id: replace cat1_min = cond(handicap[2] < handicap[3], handicap[2], handicap[3]) if _n == 1 & _N == 3 & cat == "1"
 by grouping_id: replace cat1_min = cond(handicap[1] < handicap[3], handicap[1], handicap[3]) if _n == 2 & _N == 3 & cat == "1"
@@ -111,7 +111,7 @@ global options = " robust cluster(grouping_id) absorb(tourncat) "
 
 areg scorerd handicap hand_i first_year, $options 
 
-foreach var of varlist cat1_max cat1_min cat1_top1 cat1_top5 cat1_top10 cat1_top25 cat1_bot10 cat1_bot1 {
+foreach var of varlist cat1_max cat1_min cat1_scoremin cat1_top1 cat1_top5 cat1_top10 cat1_top25 cat1_bot10 cat1_bot1 {
  areg scorerd handicap `var' first_year, $options 
  est store `var'
 }
