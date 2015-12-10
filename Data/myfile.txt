@@ -1,0 +1,16 @@
+	(1)
+VARIABLES	test1
+	
+handicap	-0.267***
+	(0.0101)
+t_superstar	0.735***
+	(0.0326)
+_Iround_2	-8.61e-05
+	(0.0105)
+Constant	-1.108***
+	(0.0496)
+	
+Observations	17,276
+R-squared	0.204
+Robust standard errors in parentheses	
+*** p<0.01, ** p<0.05, * p<0.1	
