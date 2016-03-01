@@ -176,6 +176,7 @@ replace t_superstar = 2 if tourn == "barclays classic_2006"
 replace t_superstar = 5 if tourn == "bay hill invitational_2002"
 replace t_superstar = 4 if tourn == "bay hill invitational_2005"
 replace t_superstar = 4 if tourn == "bay hill invitational_2006"
+replace t_superstar = 1 if tourn == "bell canadian open_2005"
 replace t_superstar = 1 if tourn == "bell canadian open_2002"
 replace t_superstar = 3 if tourn == "bellsouth classic_2002"
 replace t_superstar = 2 if tourn == "bellsouth classic_2005"
@@ -240,6 +241,7 @@ replace t_superstar = 1 if tourn == "wachovia championship_2005"
 */
 
 bys player: replace t_superstar = t_superstar - 1 if superstar == 1
+
 gen tsuperstarXfirst_year = t_superstar * first_year
 gen tsuperstarXpurse = purse*t_superstar
 gen tsuperstarXlogpurse = log_purse*t_superstar
