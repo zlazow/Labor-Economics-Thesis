@@ -1,0 +1,695 @@
+ 
+. areg cv_drivdist handicap t_superstar , robust cluster(grouping_id) absorb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   2,   6439) =       0.50
+                                                  Prob > F        =     0.6074
+                                                  R-squared       =     0.9811
+                                                  Adj R-squared   =     0.9807
+                                                  Root MSE        =    37.9421
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+ cv_drivdist |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.3311583   .3333099    -0.99   0.320    -.9845566    .3222399
+ t_superstar |   .3952195   2.854962     0.14   0.890    -5.201455    5.991894
+       _cons |    3548.89   4.667845   760.28   0.000      3539.74    3558.041
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg cv_putts handicap t_superstar , robust cluster(grouping_id) absorb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   2,   6439) =       0.04
+                                                  Prob > F        =     0.9638
+                                                  R-squared       =     1.0000
+                                                  Adj R-squared   =     1.0000
+                                                  Root MSE        =     9.8919
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+    cv_putts |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |   .0217848   .0880871     0.25   0.805    -.1508952    .1944647
+ t_superstar |  -.0785364   .4803181    -0.16   0.870     -1.02012    .8630468
+       _cons |   3765.539   .8301177  4536.15   0.000     3763.911    3767.166
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg cv_greenrd handicap t_superstar , robust cluster(grouping_id) absorb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   2,   6439) =       0.88
+                                                  Prob > F        =     0.4141
+                                                  R-squared       =     0.9821
+                                                  Adj R-squared   =     0.9818
+                                                  Root MSE        =    32.9115
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+  cv_greenrd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.4169203   .3147966    -1.32   0.185    -1.034026    .2001857
+ t_superstar |   .3650687   2.979939     0.12   0.902    -5.476602     6.20674
+       _cons |    1873.79   4.766594   393.11   0.000     1864.445    1883.134
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg cv_fairrd handicap t_superstar , robust cluster(grouping_id) absorb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   2,   6439) =       0.28
+                                                  Prob > F        =     0.7554
+                                                  R-squared       =     0.9890
+                                                  Adj R-squared   =     0.9888
+                                                  Root MSE        =    15.5697
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+   cv_fairrd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.1026732   .1375468    -0.75   0.455    -.3723106    .1669643
+ t_superstar |   .0818918    1.07984     0.08   0.940    -2.034954    2.198737
+       _cons |   1202.855   1.763646   682.03   0.000     1199.398    1206.312
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg cv_scorerd handicap t_superstar , robust cluster(grouping_id) absorb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   2,   6439) =       0.02
+                                                  Prob > F        =     0.9807
+                                                  R-squared       =     0.6140
+                                                  Adj R-squared   =     0.6071
+                                                  Root MSE        =   157.5436
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+  cv_scorerd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.2753908    1.39763    -0.20   0.844    -3.015211    2.464429
+ t_superstar |   .4572214   11.02001     0.04   0.967    -21.14565     22.0601
+       _cons |   2432.073   17.83482   136.37   0.000     2397.111    2467.035
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. 
+. //round by round superstar effect
+. areg cv_drivdist handicap t_superstar tsupXround2 _I*, robust cluster(grouping_id) absorb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   4,   6439) =      16.62
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.9813
+                                                  Adj R-squared   =     0.9810
+                                                  Root MSE        =    37.6937
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+ cv_drivdist |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |   -.313234   .3308255    -0.95   0.344     -.961762     .335294
+ t_superstar |  -.9158978   2.830689    -0.32   0.746    -6.464989    4.633193
+ tsupXround2 |   2.655209   .4738929     5.60   0.000     1.726222    3.584197
+   _Iround_2 |   3.613422   .8669985     4.17   0.000     1.913816    5.313027
+       _cons |   3547.134   4.639669   764.52   0.000     3538.038    3556.229
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg cv_putts handicap t_superstar tsupXround2 _I*, robust cluster(grouping_id) absorb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   4,   6439) =       6.17
+                                                  Prob > F        =     0.0001
+                                                  R-squared       =     1.0000
+                                                  Adj R-squared   =     1.0000
+                                                  Root MSE        =     9.8741
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+    cv_putts |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |   .0226634   .0878896     0.26   0.797    -.1496294    .1949562
+ t_superstar |  -.4665975   .4864908    -0.96   0.338    -1.420281    .4870862
+ tsupXround2 |   .7815469    .159363     4.90   0.000     .4691425    1.093951
+   _Iround_2 |  -1.334066   .3930216    -3.39   0.001    -2.104519   -.5636132
+       _cons |   3766.204   .8508448  4426.43   0.000     3764.536    3767.871
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg cv_greenrd handicap t_superstar tsupXround2 _I*, robust cluster(grouping_id) absorb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   4,   6439) =      65.26
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.9834
+                                                  Adj R-squared   =     0.9831
+                                                  Root MSE        =    31.7107
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+  cv_greenrd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.3817167    .301441    -1.27   0.205    -.9726411    .2092078
+ t_superstar |  -3.464376    2.84431    -1.22   0.223     -9.04017    2.111418
+ tsupXround2 |   7.738406   .6710135    11.53   0.000     6.422997    9.053816
+   _Iround_2 |   1.242287    .833347     1.49   0.136    -.3913503    2.875924
+       _cons |   1873.249   4.546638   412.01   0.000     1864.336    1882.162
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg cv_fairrd handicap t_superstar tsupXround2 _I*, robust cluster(grouping_id) absorb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   4,   6439) =      45.35
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.9893
+                                                  Adj R-squared   =     0.9891
+                                                  Root MSE        =    15.3239
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+   cv_fairrd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.0915692   .1351896    -0.68   0.498    -.3565858    .1734473
+ t_superstar |  -.3973833    1.07591    -0.37   0.712    -2.506525    1.711759
+ tsupXround2 |    .975062   .2325094     4.19   0.000     .5192663    1.430858
+   _Iround_2 |   3.792414    .416044     9.12   0.000     2.976829    4.607998
+       _cons |   1200.994   1.757318   683.42   0.000     1197.549    1204.439
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg cv_scorerd handicap t_superstar tsupXround2 _I*, robust cluster(grouping_id) absorb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   4,   6439) =     150.60
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.6482
+                                                  Adj R-squared   =     0.6418
+                                                  Root MSE        =   150.4267
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+  cv_scorerd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |   -.448012   1.343587    -0.33   0.739     -3.08189    2.185866
+ t_superstar |   1.161662   10.79178     0.11   0.914    -19.99382    22.31715
+ tsupXround2 |  -1.586225   2.551026    -0.62   0.534    -6.587085    3.414635
+   _Iround_2 |  -90.44324   5.082131   -17.80   0.000    -100.4059   -80.48057
+       _cons |   2476.644    17.5028   141.50   0.000     2442.333    2510.956
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. 
+. //Superstar effect across categories and across rounds
+. areg cv_drivdist handicap t_superstar tsupXround2 _I* supXcat1 supXcat1a supXcat2 , robust cluster(grouping_id) abs
+> orb(tourn)  
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   7,   6439) =       9.66
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.9813
+                                                  Adj R-squared   =     0.9812
+                                                  Root MSE        =    37.4715
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+ cv_drivdist |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.3183509   .3273539    -0.97   0.331    -.9600734    .3233716
+ t_superstar |  -1.114524   3.012032    -0.37   0.711    -7.019108    4.790059
+ tsupXround2 |   2.655864   .4707171     5.64   0.000     1.733102    3.578626
+   _Iround_2 |   3.621772   .8608134     4.21   0.000     1.934292    5.309252
+    supXcat1 |   .2019679    1.22105     0.17   0.869    -2.191696    2.595632
+   supXcat1a |   .2287716   1.224786     0.19   0.852    -2.172216    2.629759
+    supXcat2 |   .2360588   1.204059     0.20   0.845    -2.124298    2.596416
+       _cons |   3547.107   4.571857   775.86   0.000     3538.145     3556.07
+-------------+----------------------------------------------------------------
+       tourn |   absorbed                                      (81 categories)
+
+. areg cv_putts handicap t_superstar tsupXround2 _I* supXcat1 supXcat1a supXcat2 , robust cluster(grouping_id) absorb
+> (tourn)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   7,   6439) =       3.59
+                                                  Prob > F        =     0.0007
+                                                  R-squared       =     1.0000
+                                                  Adj R-squared   =     1.0000
+                                                  Root MSE        =     9.8142
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+    cv_putts |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |     .02623   .1024656     0.26   0.798    -.1746366    .2270966
+ t_superstar |  -.4493408   .5792904    -0.78   0.438    -1.584943    .6862609
+ tsupXround2 |   .7828204   .1582474     4.95   0.000     .4726028    1.093038
+   _Iround_2 |  -1.335927   .3901394    -3.42   0.001     -2.10073   -.5711238
+    supXcat1 |  -.0053959   .2947152    -0.02   0.985    -.5831357    .5723439
+   supXcat1a |   .0071912   .3068277     0.02   0.981    -.5942931    .6086755
+    supXcat2 |   .0092773   .3149485     0.03   0.977    -.6081265    .6266811
+       _cons |   3766.185   .8913877  4225.08   0.000     3764.438    3767.932
+-------------+----------------------------------------------------------------
+       tourn |   absorbed                                      (81 categories)
+
+. areg cv_greenrd handicap t_superstar tsupXround2 _I* supXcat1 supXcat1a supXcat2, robust cluster(grouping_id) absor
+> b(tourn)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   7,   6439) =      37.89
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.9834
+                                                  Adj R-squared   =     0.9833
+                                                  Root MSE        =    31.5234
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+  cv_greenrd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |   -.381829   .2991574    -1.28   0.202     -.968277    .2046189
+ t_superstar |   -3.50221   3.059066    -1.14   0.252    -9.498997    2.494577
+ tsupXround2 |   7.738602   .6665321    11.61   0.000     6.431978    9.045227
+   _Iround_2 |   1.253721    .827271     1.52   0.130    -.3680053    2.875447
+    supXcat1 |   .0378614   1.284542     0.03   0.976    -2.480268    2.555991
+   supXcat1a |   .0441248   1.277321     0.03   0.972    -2.459849    2.548098
+    supXcat2 |   .1434821    1.22012     0.12   0.906    -2.248359    2.535323
+       _cons |   1873.217   4.484942   417.67   0.000     1864.425    1882.009
+-------------+----------------------------------------------------------------
+       tourn |   absorbed                                      (81 categories)
+
+. areg cv_fairrd handicap t_superstar tsupXround2 _I* supXcat1 supXcat1a supXcat2, robust cluster(grouping_id) absorb
+> (tourn)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   7,   6439) =      26.33
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.9893
+                                                  Adj R-squared   =     0.9893
+                                                  Root MSE        =    15.2356
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+   cv_fairrd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.0933016   .1306762    -0.71   0.475    -.3494703    .1628672
+ t_superstar |  -.4526239   1.123201    -0.40   0.687    -2.654472    1.749224
+ tsupXround2 |   .9772955   .2309708     4.23   0.000     .5245159    1.430075
+   _Iround_2 |   3.792844   .4131688     9.18   0.000     2.982896    4.602792
+    supXcat1 |   .0533483    .405897     0.13   0.895    -.7423447    .8490414
+   supXcat1a |    .044352   .4006223     0.11   0.912    -.7410008    .8297049
+    supXcat2 |   .1147248   .4396035     0.26   0.794    -.7470441    .9764937
+       _cons |   1200.985   1.728341   694.88   0.000     1197.597    1204.373
+-------------+----------------------------------------------------------------
+       tourn |   absorbed                                      (81 categories)
+
+. areg cv_scorerd handicap t_superstar tsupXround2 _I* supXcat1 supXcat1a supXcat2, robust cluster(grouping_id) absor
+> b(tourn)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   7,   6439) =      87.23
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.6481
+                                                  Adj R-squared   =     0.6463
+                                                  Root MSE        =   149.4835
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+  cv_scorerd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.4362711   1.338814    -0.33   0.745    -3.060791    2.188249
+ t_superstar |   1.379254   11.20926     0.12   0.902    -20.59462    23.35313
+ tsupXround2 |  -1.593064   2.534375    -0.63   0.530    -6.561282    3.375154
+   _Iround_2 |  -90.44181   5.048025   -17.92   0.000    -100.3376     -80.546
+    supXcat1 |  -.2553359   3.516117    -0.07   0.942    -7.148094    6.637423
+   supXcat1a |  -.1720643   3.507643    -0.05   0.961    -7.048212    6.704083
+    supXcat2 |  -.0778295   3.678361    -0.02   0.983     -7.28864    7.132981
+       _cons |   2476.627   17.43299   142.07   0.000     2442.453    2510.801
+-------------+----------------------------------------------------------------
+       tourn |   absorbed                                      (81 categories)
+
+. 
+. //Superstar Effect across categories
+. areg cv_drivdist handicap supXcat1 supXcat1a supXcat2, robust cluster(grouping_id) absorb(tourn)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   4,   6439) =       0.27
+                                                  Prob > F        =     0.8999
+                                                  R-squared       =     0.9811
+                                                  Adj R-squared   =     0.9810
+                                                  Root MSE        =    37.7177
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+ cv_drivdist |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.3293524   .3232825    -1.02   0.308    -.9630937    .3043889
+    supXcat1 |   .2021936   1.198717     0.17   0.866     -2.14769    2.552077
+   supXcat1a |   .2345191   1.193574     0.20   0.844    -2.105282     2.57432
+    supXcat2 |   .2402488   1.165432     0.21   0.837    -2.044385    2.524882
+       _cons |   3549.182   2.000985  1773.72   0.000      3545.26    3553.105
+-------------+----------------------------------------------------------------
+       tourn |   absorbed                                      (81 categories)
+
+. areg cv_putts handicap supXcat1 supXcat1a supXcat2, robust cluster(grouping_id) absorb(tourn)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   4,   6439) =       0.02
+                                                  Prob > F        =     0.9993
+                                                  R-squared       =     1.0000
+                                                  Adj R-squared   =     1.0000
+                                                  Root MSE        =     9.8316
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+    cv_putts |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |   .0236061   .0997971     0.24   0.813    -.1720294    .2192416
+    supXcat1 |  -.0090033    .283118    -0.03   0.975    -.5640088    .5460022
+   supXcat1a |   .0034133   .2941758     0.01   0.991    -.5732691    .5800957
+    supXcat2 |    .005078   .3024829     0.02   0.987    -.5878891    .5980451
+       _cons |   3765.428   .5130879  7338.76   0.000     3764.422    3766.434
+-------------+----------------------------------------------------------------
+       tourn |   absorbed                                      (81 categories)
+
+. areg cv_greenrd handicap supXcat1 supXcat1a supXcat2, robust cluster(grouping_id) absorb(tourn)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   4,   6439) =       0.46
+                                                  Prob > F        =     0.7686
+                                                  R-squared       =     0.9821
+                                                  Adj R-squared   =     0.9820
+                                                  Root MSE        =    32.7165
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+  cv_greenrd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.4051536   .3044354    -1.33   0.183    -1.001948     .191641
+    supXcat1 |   .0335081   1.352306     0.02   0.980    -2.617462    2.684478
+   supXcat1a |   .0510304   1.334304     0.04   0.969    -2.564649     2.66671
+    supXcat2 |   .1459673   1.256384     0.12   0.908    -2.316962    2.608897
+       _cons |   1874.292   1.969099   951.85   0.000     1870.432    1878.152
+-------------+----------------------------------------------------------------
+       tourn |   absorbed                                      (81 categories)
+
+. areg cv_fairrd handicap supXcat1 supXcat1a supXcat2, robust cluster(grouping_id) absorb(tourn)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   4,   6439) =       0.18
+                                                  Prob > F        =     0.9471
+                                                  R-squared       =     0.9890
+                                                  Adj R-squared   =     0.9889
+                                                  Root MSE        =    15.4797
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+   cv_fairrd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.1029325   .1297269    -0.79   0.428    -.3572403    .1513752
+    supXcat1 |   .0500037   .3928306     0.13   0.899    -.7200749    .8200823
+   supXcat1a |   .0432189   .3843545     0.11   0.910    -.7102438    .7966816
+    supXcat2 |   .1130019   .4273138     0.26   0.791    -.7246752    .9506791
+       _cons |   1202.895   .6347097  1895.19   0.000     1201.651     1204.14
+-------------+----------------------------------------------------------------
+       tourn |   absorbed                                      (81 categories)
+
+. areg cv_scorerd handicap supXcat1 supXcat1a supXcat2, robust cluster(grouping_id) absorb(tourn)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   4,   6439) =       0.01
+                                                  Prob > F        =     0.9998
+                                                  R-squared       =     0.6139
+                                                  Adj R-squared   =     0.6121
+                                                  Root MSE        =   156.5527
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+  cv_scorerd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.2536176   1.340002    -0.19   0.850    -2.880467    2.373231
+    supXcat1 |  -.1677092   3.238568    -0.05   0.959    -6.516379     6.18096
+   supXcat1a |  -.1023335   3.250433    -0.03   0.975    -6.474263    6.269596
+    supXcat2 |  -.0064596   3.530066    -0.00   0.999    -6.926563    6.913644
+       _cons |   2432.992   5.673538   428.83   0.000      2421.87    2444.114
+-------------+----------------------------------------------------------------
+       tourn |   absorbed                                      (81 categories)
+
+. 
+. //top 5, 10, 25, fixed effects
+. areg cv_drivdist handicap supXtop5 supXtop10 supXtop25 supXtop50 supXbot25 supXbot10 , robust cluster(grouping_id) 
+> absorb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   7,   6439) =       0.19
+                                                  Prob > F        =     0.9882
+                                                  R-squared       =     0.9811
+                                                  Adj R-squared   =     0.9807
+                                                  Root MSE        =    37.9469
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+ cv_drivdist |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.3334315   .3450981    -0.97   0.334    -1.009938    .3430756
+    supXtop5 |   .0865808   .6348307     0.14   0.892    -1.157898     1.33106
+   supXtop10 |  -.0526861   .5260653    -0.10   0.920    -1.083949    .9785767
+   supXtop25 |  -.0120637   .5198847    -0.02   0.981    -1.031211    1.007083
+   supXtop50 |   .1164317   .6364235     0.18   0.855     -1.13117    1.364033
+   supXbot25 |  -.0794175    .619673    -0.13   0.898    -1.294183    1.135348
+   supXbot10 |  -.4484647   .9618546    -0.47   0.641     -2.33402     1.43709
+       _cons |   3549.405   1.466226  2420.78   0.000      3546.53    3552.279
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg cv_putts handicap supXtop5 supXtop10 supXtop25 supXtop50 supXbot25 supXbot10 , robust cluster(grouping_id) abs
+> orb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   7,   6439) =       0.02
+                                                  Prob > F        =     1.0000
+                                                  R-squared       =     1.0000
+                                                  Adj R-squared   =     1.0000
+                                                  Root MSE        =     9.8933
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+    cv_putts |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |   .0212088   .0893422     0.24   0.812    -.1539315    .1963492
+    supXtop5 |   -.015901   .1096928    -0.14   0.885    -.2309353    .1991334
+   supXtop10 |    .008478   .1025411     0.08   0.934    -.1925365    .2094926
+   supXtop25 |  -.0000147    .095159    -0.00   1.000     -.186558    .1865285
+   supXtop50 |  -.0272603   .1372879    -0.20   0.843    -.2963903    .2418697
+   supXbot25 |   .0120407   .1255193     0.10   0.924    -.2340188    .2581002
+   supXbot10 |  -.0099585   .2329687    -0.04   0.966    -.4666546    .4467376
+       _cons |   3765.448   .3538603  1.1e+04   0.000     3764.754    3766.141
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg cv_greenrd handicap supXtop5 supXtop10 supXtop25 supXtop50 supXbot25 supXbot10, robust cluster(grouping_id) ab
+> sorb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   7,   6439) =       0.44
+                                                  Prob > F        =     0.8769
+                                                  R-squared       =     0.9821
+                                                  Adj R-squared   =     0.9818
+                                                  Root MSE        =    32.9129
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+  cv_greenrd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.4206801   .3377255    -1.25   0.213    -1.082734    .2413743
+    supXtop5 |   .0906813   .6846713     0.13   0.895    -1.251502    1.432865
+   supXtop10 |   .0261157   .5975524     0.04   0.965    -1.145286    1.197517
+   supXtop25 |  -.0779187   .6343759    -0.12   0.902    -1.321506    1.165669
+   supXtop50 |  -.1288011   .7193729    -0.18   0.858    -1.539011    1.281409
+   supXbot25 |  -.4050517   .7757552    -0.52   0.602     -1.92579    1.115686
+   supXbot10 |  -.7514309   1.482079    -0.51   0.612    -3.656798    2.153937
+       _cons |   1874.682   1.545829  1212.74   0.000     1871.652    1877.713
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg cv_fairrd handicap supXtop5 supXtop10 supXtop25 supXtop50 supXbot25 supXbot10 , robust cluster(grouping_id) ab
+> sorb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   7,   6439) =       0.24
+                                                  Prob > F        =     0.9763
+                                                  R-squared       =     0.9890
+                                                  Adj R-squared   =     0.9888
+                                                  Root MSE        =    15.5712
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+   cv_fairrd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.1021391   .1455237    -0.70   0.483    -.3874139    .1831358
+    supXtop5 |   .0450997   .3378803     0.13   0.894    -.6172581    .7074574
+   supXtop10 |   .0019272   .2837863     0.01   0.995    -.5543883    .5582426
+   supXtop25 |  -.0170362    .212816    -0.08   0.936    -.4342264    .4001539
+   supXtop50 |  -.1231884   .2587383    -0.48   0.634    -.6304015    .3840246
+   supXbot25 |   -.119953   .2500813    -0.48   0.631    -.6101955    .3702895
+   supXbot10 |  -.2245794   .5301051    -0.42   0.672    -1.263762    .8146028
+       _cons |   1203.181   .6105673  1970.59   0.000     1201.984    1204.377
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg cv_scorerd handicap supXtop5 supXtop10 supXtop25 supXtop50 supXbot25 supXbot10, robust cluster(grouping_id) ab
+> sorb(tourncat)
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   7,   6439) =       0.02
+                                                  Prob > F        =     1.0000
+                                                  R-squared       =     0.6140
+                                                  Adj R-squared   =     0.6070
+                                                  Root MSE        =   157.5659
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+  cv_scorerd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.2760234   1.463367    -0.19   0.850    -3.144709    2.592662
+    supXtop5 |  -.0277346   3.623528    -0.01   0.994    -7.131054    7.075585
+   supXtop10 |   .0974189    3.00044     0.03   0.974     -5.78444    5.979278
+   supXtop25 |  -.0503511   1.968101    -0.03   0.980    -3.908483    3.807781
+   supXtop50 |  -.0492003   1.839715    -0.03   0.979    -3.655653    3.557252
+   supXbot25 |   .0531168   2.252288     0.02   0.981    -4.362116     4.46835
+   supXbot10 |  -1.178195   3.970956    -0.30   0.767    -8.962589    6.606198
+       _cons |   2432.885   5.401402   450.42   0.000     2422.297    2443.474
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. 
+. //top 5, 10, 25, 50, 75, 90 effects non-cv
+. areg scorerd handicap t_superstar supXtop5 supXtop10 supXtop25 supXtop50 supXbot25 supXbot10, $options
+
+Linear regression, absorbing indicators           Number of obs   =      17492
+                                                  F(   8,   6439) =      41.17
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.1593
+                                                  Adj R-squared   =     0.1439
+                                                  Root MSE        =     2.9478
+
+                         (Std. Err. adjusted for 6440 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+     scorerd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |   .4384007   .0311765    14.06   0.000     .3772845     .499517
+ t_superstar |   1.361185     .17848     7.63   0.000     1.011305    1.711065
+    supXtop5 |   .0379676   .0446194     0.85   0.395    -.0495012    .1254365
+   supXtop10 |  -.0522872   .0392465    -1.33   0.183    -.1292235     .024649
+   supXtop25 |   .0605299   .0306776     1.97   0.049     .0003916    .1206682
+   supXtop50 |   .0056901   .0331523     0.17   0.864    -.0592995    .0706797
+   supXbot25 |   .0105592   .0333422     0.32   0.751    -.0548025    .0759209
+   supXbot10 |  -.0661202   .0691291    -0.96   0.339    -.2016362    .0693958
+       _cons |   70.30722   .2976411   236.21   0.000     69.72374    70.89069
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg putts handicap t_superstar supXtop5 supXtop10 supXtop25 supXtop50 supXbot25 supXbot10, $options
+
+Linear regression, absorbing indicators           Number of obs   =      17276
+                                                  F(   8,   6437) =      62.72
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.2749
+                                                  Adj R-squared   =     0.2615
+                                                  Root MSE        =     0.8832
+
+                         (Std. Err. adjusted for 6438 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+       putts |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |   .2042491   .0100097    20.41   0.000     .1846268    .2238714
+ t_superstar |   .1524094   .0486712     3.13   0.002     .0569976    .2478212
+    supXtop5 |  -.0289398   .0125015    -2.31   0.021    -.0534468   -.0044328
+   supXtop10 |   .0341482   .0109999     3.10   0.002     .0125848    .0557116
+   supXtop25 |  -.0287001    .008079    -3.55   0.000    -.0445376   -.0128626
+   supXtop50 |   .0060743   .0099298     0.61   0.541    -.0133914      .02554
+   supXbot25 |  -.0160866   .0098917    -1.63   0.104    -.0354777    .0033046
+   supXbot10 |   .0228853   .0214092     1.07   0.285    -.0190839    .0648545
+       _cons |   29.03268   .0843586   344.16   0.000     28.86731    29.19805
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg drivdist handicap t_superstar supXtop5 supXtop10 supXtop25 supXtop50 supXbot25 supXbot10, $options
+
+Linear regression, absorbing indicators           Number of obs   =      17276
+                                                  F(   8,   6437) =     229.14
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.4112
+                                                  Adj R-squared   =     0.4003
+                                                  Root MSE        =     7.6344
+
+                         (Std. Err. adjusted for 6438 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+    drivdist |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -1.566577   .0870028   -18.01   0.000    -1.737132   -1.396023
+ t_superstar |  -9.042814   .3094019   -29.23   0.000    -9.649345   -8.436284
+    supXtop5 |  -.2173101    .116977    -1.86   0.063    -.4466238    .0120037
+   supXtop10 |   .0627605   .1027125     0.61   0.541    -.1385902    .2641112
+   supXtop25 |  -.1732144   .0729023    -2.38   0.018    -.3161272   -.0303015
+   supXtop50 |   .1366833   .0813672     1.68   0.093    -.0228236    .2961901
+   supXbot25 |   .0939421   .0844741     1.11   0.266    -.0716553    .2595394
+   supXbot10 |   .3458847   .1915579     1.81   0.071    -.0296325    .7214018
+       _cons |   290.1678   .5883101   493.22   0.000     289.0145    291.3211
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
+. areg greenrd handicap t_superstar supXtop5 supXtop10 supXtop25 supXtop50 supXbot25 supXbot10, $options
+
+Linear regression, absorbing indicators           Number of obs   =      17276
+                                                  F(   8,   6437) =     455.22
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.4604
+                                                  Adj R-squared   =     0.4505
+                                                  Root MSE        =     0.4789
+
+                         (Std. Err. adjusted for 6438 clusters in grouping_id)
+------------------------------------------------------------------------------
+             |               Robust
+     greenrd |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    handicap |  -.4412413    .008076   -54.64   0.000     -.457073   -.4254097
+ t_superstar |  -.0731663   .0279856    -2.61   0.009    -.1280273   -.0183052
+    supXtop5 |  -.0119235   .0065865    -1.81   0.070    -.0248353    .0009883
+   supXtop10 |   .0071798   .0059554     1.21   0.228    -.0044947    .0188543
+   supXtop25 |  -.0103311   .0046409    -2.23   0.026    -.0194287   -.0012335
+   supXtop50 |   .0106281   .0050521     2.10   0.035     .0007242    .0205319
+   supXbot25 |   .0065484   .0048683     1.35   0.179    -.0029951    .0160919
+   supXbot10 |  -.0457911   .0119408    -3.83   0.000     -.069199   -.0223833
+       _cons |   10.44811   .0548641   190.44   0.000     10.34055    10.55566
+-------------+----------------------------------------------------------------
+    tourncat |   absorbed                                     (306 categories)
+
