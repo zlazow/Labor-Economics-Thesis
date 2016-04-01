@@ -327,14 +327,16 @@ gen supXtop25 = t_superstar * cat1_top25
 gen supXtop50 = t_superstar * cat1_top50
 gen supXbot25 = t_superstar * cat1_bot25
 gen supXbot10 = t_superstar * cat1_bot10
-/*
+
 //round by round superstar effect
-areg cv_drivdist handicap t_superstar tsupXround2 _I*, robust cluster(grouping_id) absorb(tourncat)
-areg cv_putts handicap t_superstar tsupXround2 _I*, robust cluster(grouping_id) absorb(tourncat)
-areg cv_greenrd handicap t_superstar tsupXround2 _I*, robust cluster(grouping_id) absorb(tourncat)
-areg cv_fairrd handicap t_superstar tsupXround2 _I*, robust cluster(grouping_id) absorb(tourncat)
-areg cv_scorerd handicap t_superstar tsupXround2 _I*, robust cluster(grouping_id) absorb(tourncat)
-*/
+gen playerXyear = player * year
+xi i.round
+areg cv_drivdist handicap t_superstar tsupXround2 _I*, robust cluster(tourn) absorb(playerXyear)
+areg cv_putts handicap t_superstar tsupXround2 _I*, robust cluster(tourn) absorb(playerXyear)
+areg cv_greenrd handicap t_superstar tsupXround2 _I*, robust cluster(tourn) absorb(playerXyear)
+areg cv_fairrd handicap t_superstar tsupXround2 _I*, robust cluster(tourn) absorb(playerXyear)
+areg cv_scorerd handicap t_superstar tsupXround2 _I*, robust cluster(tourn) absorb(playerXyear)
+
 //Superstar effect across categories and across rounds
 areg cv_drivdist handicap t_superstar tsupXround2 _I* supXcat1 supXcat1a supXcat2 , robust cluster(grouping_id) absorb(tourn)  
 areg cv_putts handicap t_superstar tsupXround2 _I* supXcat1 supXcat1a supXcat2 , robust cluster(grouping_id) absorb(tourn)
@@ -371,3 +373,96 @@ gen purse2 = purse *purse
 areg scorerd handicap t_superstar purse purse2 _I*, robust cluster(grouping_id) absorb(year)
 areg scorerd handicap t_superstar purse purse2 tsupXpurse _I*, robust cluster(grouping_id) absorb(year)
 
+
+gen pt_superstar = 0
+
+replace pt_superstar = 	2	if tourn ==	"advil western open_2002"
+replace pt_superstar = 	1	if tourn ==	"air canada championship_2002"
+replace pt_superstar = 	1	if tourn ==	"b.c. open_2002"
+replace pt_superstar = 	5	if tourn ==	"bay hill invitational_2002"
+replace pt_superstar = 	1	if tourn ==	"bell canadian open_2002"
+replace pt_superstar = 	2	if tourn ==	"bellsouth classic_2002"
+replace pt_superstar = 	2	if tourn ==	"buick challenge_2002"
+replace pt_superstar = 	1	if tourn ==	"buick classic_2002"
+replace pt_superstar = 	2	if tourn ==	"buick invitational_2002"
+replace pt_superstar = 	3	if tourn ==	"buick open_2002"
+replace pt_superstar = 	1	if tourn ==	"canon greater hartford open_2002"
+replace pt_superstar = 	1	if tourn ==	"compaq classic_2002"
+replace pt_superstar = 	2	if tourn ==	"fedex st. jude classic_2002"
+replace pt_superstar = 	3	if tourn ==	"genuity championship_2002"
+replace pt_superstar = 	0	if tourn ==	"greater greensboro chrysler classic_2002"
+replace pt_superstar = 	2	if tourn ==	"greater milwaukee open_2002"
+replace pt_superstar = 	0	if tourn ==	"honda classic_2002"
+replace pt_superstar = 	2	if tourn ==	"invensys classic at las vegas_2002"
+replace pt_superstar = 	1	if tourn ==	"john deere classic_2002"
+replace pt_superstar = 	1	if tourn ==	"kemper insurance open_2002"
+replace pt_superstar = 	5	if tourn ==	"mastercard colonial_2002"
+replace pt_superstar = 	4	if tourn ==	"memorial tournament_2002"
+replace pt_superstar = 	3	if tourn ==	"michelob championship at kingsmill_2002"
+replace pt_superstar = 	2	if tourn ==	"nec invitational_2002"
+replace pt_superstar = 	4	if tourn ==	"nissan open_2002"
+replace pt_superstar = 	1	if tourn ==	"phoenix open_2002"
+replace pt_superstar = 	2	if tourn ==	"reno-tahoe open_2002"
+replace pt_superstar = 	1	if tourn ==	"sei pennsylvania classic_2002"
+replace pt_superstar = 	3	if tourn ==	"shell houston open_2002"
+replace pt_superstar = 	1	if tourn ==	"sony open_2002"
+replace pt_superstar = 	2	if tourn ==	"southern farm bureau classic_2002"
+replace pt_superstar = 	2	if tourn ==	"tampa bay classic_2002"
+replace pt_superstar = 	0	if tourn ==	"touchstone energy tucson open_2002"
+replace pt_superstar = 	0	if tourn ==	"valero texas open_2002"
+replace pt_superstar = 	3	if tourn ==	"verizon byron nelson classic_2002"
+replace pt_superstar = 	1	if tourn ==	"worldcom classic_2002"
+replace pt_superstar = 	4	if tourn ==	"84 lumber classic_2005"
+replace pt_superstar = 	0	if tourn ==	"b.c. open_2005"
+replace pt_superstar = 	3	if tourn ==	"bank of america colonial_2005"
+replace pt_superstar = 	4	if tourn ==	"barclays classic_2005"
+replace pt_superstar = 	3	if tourn ==	"bay hill invitational_2005"
+replace pt_superstar = 	0	if tourn ==	"bell canadian open_2005"
+replace pt_superstar = 	1	if tourn ==	"bellsouth classic_2005"
+replace pt_superstar = 	4	if tourn ==	"booz allen classic_2005"
+replace pt_superstar = 	1	if tourn ==	"buick championship_2005"
+replace pt_superstar = 	1	if tourn ==	"mci heritage_2005"
+replace pt_superstar = 	3	if tourn ==	"buick open_2005"
+replace pt_superstar = 	4	if tourn ==	"chrysler championship_2005"
+replace pt_superstar = 	4	if tourn ==	"chrysler classic of greensboro_2005"
+replace pt_superstar = 	0	if tourn ==	"chrysler classic of tucson_2005"
+replace pt_superstar = 	0	if tourn ==	"cialis western open_2005"
+replace pt_superstar = 	2	if tourn ==	"deutsche bank championship_2005"
+replace pt_superstar = 	1	if tourn ==	"fedex st. jude classic_2005"
+replace pt_superstar = 	4	if tourn ==	"ford championship at doral_2005"
+replace pt_superstar = 	2	if tourn ==	"honda classic_2005"
+replace pt_superstar = 	0	if tourn ==	"john deere classic_2005"
+replace pt_superstar = 	4	if tourn ==	"memorial tournament_2005"
+replace pt_superstar = 	3	if tourn ==	"nissan open_2005"
+replace pt_superstar = 	0	if tourn ==	"reno-tahoe open_2005"
+replace pt_superstar = 	0	if tourn ==	"shell houston open_2005"
+replace pt_superstar = 	0	if tourn ==	"sony open in hawaii_2005"
+replace pt_superstar = 	0	if tourn ==	"u.s. bank championship in milwaukee_2005"
+replace pt_superstar = 	6	if tourn ==	"wachovia championship_2005"
+replace pt_superstar = 	1	if tourn ==	"zurich classic of new orleans_2005"
+replace pt_superstar = 	3	if tourn ==	"bank of america colonial_2006"
+replace pt_superstar = 	2	if tourn ==	"valero texas open_2005"
+replace pt_superstar = 	3	if tourn ==	"barclays classic_2006"
+replace pt_superstar = 	3	if tourn ==	"bay hill invitational_2006"
+replace pt_superstar = 	1	if tourn ==	"bellsouth classic_2006"
+replace pt_superstar = 	0	if tourn ==	"booz allen classic_2006"
+replace pt_superstar = 	0	if tourn ==	"chrysler classic of tucson_2006"
+replace pt_superstar = 	2	if tourn ==	"fedex st. jude classic_2006"
+replace pt_superstar = 	1	if tourn ==	"ford championship at doral_2006"
+replace pt_superstar = 	1	if tourn ==	"honda classic_2006"
+replace pt_superstar = 	4	if tourn ==	"memorial tournament_2006"
+replace pt_superstar = 	3	if tourn ==	"nissan open_2006"
+replace pt_superstar = 	1	if tourn ==	"shell houston open_2006"
+replace pt_superstar = 	1	if tourn ==	"sony open in hawaii_2006"
+replace pt_superstar = 	1	if tourn ==	"verizon heritage_2006"
+replace pt_superstar = 	5	if tourn ==	"wachovia championship_2006"
+replace pt_superstar = 	4	if tourn ==	"zurich classic of new orleans_2006"
+
+/*
+foreach name in "phil mickelson","Len Mattiace", "Jim Furyk", "Bob Estes", "Chris Smith", "Tiger Woods"{
+	replace pt_superstar = pt_superstar - 1	if player == `name' & tourn ==	"advil western open_2002" }
+	*/
+	
+gen playerXyear = player * year
+xi i.tourncat
+areg scorerd t_superstar _I*, robust cluster(playerXyear) absorb(player)
