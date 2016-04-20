@@ -1,6 +1,3 @@
-//Make Table 1
-//Look at top players in each category. If there is only an effect in category 1 then that is b/c of television,etc.
-
 global PATH "N:\Thesis\Data\"
 set more off
 clear
@@ -44,9 +41,8 @@ local hand5 = r(p5)
 local hand10 = r(p10)
 local hand25 = r(p25)
 local hand50 = r(p50)
-local hand40 = r(p40)
-local hand60 = r(p60)
 local hand75 = r(p75)
+local hand80 = r(p80)
 local hand90 = r(p90)
 local hand99 = r(p99)
 restore 
@@ -62,6 +58,20 @@ gen cat1_top50 = .
 gen cat1_bot25 = .
 gen cat1_bot10 = .
 gen cat1_bot1 = .
+
+gen top10 = 0
+gen top10_25 = 0
+gen top25_50 = 0
+gen mid50_75 = 0
+gen bot75_90 = 0
+gen bot90_100 = 0
+
+replace top10 = 1 if handicap <= `hand10'
+replace top10_25 = 1 if ((handicap > `hand10') & (handicap <= `hand25'))
+replace top25_50 = 1 if ((handicap > `hand25') & (handicap <= `hand50'))
+replace mid50_75 = 1 if ((handicap > `hand50') & (handicap <= `hand75'))
+replace bot75_90 = 1 if ((handicap > `hand75') & (handicap <= `hand90'))
+replace bot90_100 = 1 if (handicap > `hand90')
 
 sort grouping_id handicap
 
@@ -107,19 +117,12 @@ by grouping_id: replace cat1_top25 = handicap[1] < `hand25' | handicap[2] < `han
 by grouping_id: replace cat1_top25 = handicap[2] < `hand25' if _n == 1 & _N == 2
 by grouping_id: replace cat1_top25 = handicap[1] < `hand25' if _n == 2 & _N == 2
 
-by grouping_id: replace cat1_top50 = handicap[2] < `hand60' & handicap[2] > `hand40' | handicap[3] < `hand60' & handicap[3] > `hand40' if _n == 1 & _N == 3
-by grouping_id: replace cat1_top50 = handicap[1] < `hand60' & handicap[1] > `hand40' | handicap[3] < `hand60' & handicap[3] > `hand40' if _n == 2 & _N == 3
-by grouping_id: replace cat1_top50 = handicap[1] < `hand60' & handicap[1] > `hand40' | handicap[2] < `hand60' & handicap[2] > `hand40' if _n == 3 & _N == 3
-by grouping_id: replace cat1_top50 = handicap[2] < `hand60' & handicap[2] > `hand40' if _n == 1 & _N == 2
-by grouping_id: replace cat1_top50 = handicap[1] < `hand60' & handicap[1] > `hand40' if _n == 2 & _N == 2
-
-/*
 by grouping_id: replace cat1_top50 = handicap[2] < `hand50' | handicap[3] < `hand50' if _n == 1 & _N == 3
 by grouping_id: replace cat1_top50 = handicap[1] < `hand50' | handicap[3] < `hand50' if _n == 2 & _N == 3
 by grouping_id: replace cat1_top50 = handicap[1] < `hand50' | handicap[2] < `hand50' if _n == 3 & _N == 3
 by grouping_id: replace cat1_top50 = handicap[2] < `hand50' if _n == 1 & _N == 2
 by grouping_id: replace cat1_top50 = handicap[1] < `hand50' if _n == 2 & _N == 2
-*/
+
 by grouping_id: replace cat1_bot25 = (handicap[2] > `hand75') | (handicap[3] > `hand75') if _n == 1 & _N == 3
 by grouping_id: replace cat1_bot25 = (handicap[1] > `hand75') | (handicap[3] > `hand75') if _n == 2 & _N == 3
 by grouping_id: replace cat1_bot25 = (handicap[2] > `hand75') | (handicap[1] > `hand75') if _n == 3 & _N == 3
@@ -304,11 +307,6 @@ areg scorerd handicap t_superstar drivdist putts puttsXtsuperstar fairrd fairrdX
 */
 // gen sd(putts,greenrd,fairrd,drivdist)/mean(putts,greenrd,fairrd,drivdist) per round in a tournament
 
-foreach v in scorerd putts greenrd fairrd drivdist{
-	bysort tourn round: egen m_`v'= mean(`v')
-	bysort tourn round: egen sd_`v' =sd(`v')
-	gen cv_`v' = 100 * (m_`v'/sd_`v')
-}
 //areg cv_scorerd handicap t_superstar, robust cluster(grouping_id) absorb(tourncat)
 gen supXcat1 = 0
 replace supXcat1 = t_superstar if cat == "1"
@@ -319,24 +317,81 @@ replace supXcat2 = t_superstar if cat == "2"
 gen supXcat3 = 0
 replace supXcat3 = t_superstar if cat == "3"
 
+
 gen tsupXround2 = t_superstar * (round-1)
 
-gen supXtop5 = t_superstar * cat1_top5
-gen supXtop10 = t_superstar * cat1_top10
-gen supXtop25 = t_superstar * cat1_top25
-gen supXtop50 = t_superstar * cat1_top50
-gen supXbot25 = t_superstar * cat1_bot25
-gen supXbot10 = t_superstar * cat1_bot10
+gen supXtop10 = 0
+replace supXtop10 = t_superstar if top10==1
+gen supXtop10_25 = 0
+replace supXtop10_25 = t_superstar if top10_25==1
+gen supXtop25_50 = 0
+replace supXtop25_50 = t_superstar if top25_50==1
+gen supXmid50_75 = 0
+replace supXmid50_75 = t_superstar if mid50_75==1 
+gen supXbot75_90 = 0
+replace supXbot75_90 = t_superstar if bot75_90==1 
+gen supXbot90_100 = 0
+replace supXbot90_100 = t_superstar if bot90_100==1 
+
+
+/*
+bysort cat tourn round: egen m_scorerd = mean(scorerd)
+bysort cat tourn round: egen sd_scorerd = sd(scorerd)
+
+gen cv_scorerd = (sd_scorerd/m_scorerd)
+*/
+//collapse (mean) player scorerd handicap t_superstar supXcat1 supXcat2 supXcat3 supXcat1a (sd) sd_scorerd=scorerd, by(player tourn)
+collapse (mean) scorerd handicap t_superstar supXtop10 supXtop10_25 supXtop25_50 supXmid50_75 supXbot75_90 supXbot90_100 (sd) sd_scorerd=scorerd, by(tourn round)
+//collapse (mean) scorerd handicap t_superstar supXcat1 supXcat2 supXcat3 supXcat1a  (sd) sd_scorerd=scorerd, by(tourn round cat)
+gen cv_scorerd = (sd_scorerd/scorerd)
+//collapse (sd) scored , by(player)
+//list
+
+/*
+bysort tourn cat: egen m_`v' = mean(`v')
+bysort tourn cat: egen sd_`v' = sd(`v')
+gen cv_`v' = (sd_`v'/m_`v')
+*/
+//collapse (sd) `v', by(tourn)
+//list
 
 //round by round superstar effect
-gen playerXyear = player * year
-xi i.round
-areg cv_drivdist handicap t_superstar tsupXround2 _I*, robust cluster(tourn) absorb(playerXyear)
-areg cv_putts handicap t_superstar tsupXround2 _I*, robust cluster(tourn) absorb(playerXyear)
-areg cv_greenrd handicap t_superstar tsupXround2 _I*, robust cluster(tourn) absorb(playerXyear)
-areg cv_fairrd handicap t_superstar tsupXround2 _I*, robust cluster(tourn) absorb(playerXyear)
-areg cv_scorerd handicap t_superstar tsupXround2 _I*, robust cluster(tourn) absorb(playerXyear)
+//gen playerXyear = player * year
+areg cv_scorerd handicap t_superstar, robust cluster(tourn) absorb(tourn)
+areg sd_scorerd handicap t_superstar , robust cluster(tourn) absorb(tourn)
 
+areg sd_scorerd handicap t_superstar supXcat1 , robust cluster(tourn) absorb(tourn)
+areg sd_scorerd handicap t_superstar supXcat1a , robust cluster(tourn) absorb(tourn)
+areg sd_scorerd handicap t_superstar supXcat2 , robust cluster(tourn) absorb(tourn)
+areg sd_scorerd handicap t_superstar supXcat3 , robust cluster(tourn) absorb(tourn)
+
+areg cv_scorerd handicap t_superstar supXcat1 , robust cluster(tourn) absorb(tourn)
+areg cv_scorerd handicap t_superstar supXcat1a , robust cluster(tourn) absorb(tourn)
+areg cv_scorerd handicap t_superstar supXcat2 , robust cluster(tourn) absorb(tourn)
+areg cv_scorerd handicap t_superstar supXcat3 , robust cluster(tourn) absorb(tourn)
+areg cv_scorerd handicap t_superstar supXcat1 supXcat1a supXcat2 supXcat3 , robust cluster(tourn) absorb(tourn)
+
+areg sd_scorerd handicap t_superstar, robust cluster(tourn) absorb(tourn)
+
+areg cv_scorerd handicap  t_superstar supXtop10, robust cluster(tourn) absorb(tourn)
+areg cv_scorerd handicap  t_superstar supXtop10_25, robust cluster(tourn) absorb(tourn)
+areg cv_scorerd handicap  t_superstar supXtop25_50, robust cluster(tourn) absorb(tourn)
+areg cv_scorerd handicap  t_superstar supXmid50_75, robust cluster(tourn) absorb(tourn)
+areg cv_scorerd handicap  t_superstar supXbot75_90, robust cluster(tourn) absorb(tourn)
+areg cv_scorerd handicap  t_superstar supXbot90_100, robust cluster(tourn) absorb(tourn)
+
+areg cv_scorerd handicap  t_superstar supXtop10 supXtop10_25 supXtop25_50 supXmid50_75 supXbot75_90 supXbot90_100,  robust cluster(tourncat) absorb(tourncat)
+areg cv_scorerd handicap  supXtop10 supXtop10_25 supXtop25_50 supXmid50_75 supXbot75_90 supXbot90_100,  robust cluster(year) absorb(tourn)
+
+areg sd_scorerd t_superstar supXtop10, robust cluster(tourn) absorb(tourn)
+areg sd_scorerd t_superstar supXtop10_25, robust cluster(tourn) absorb(tourn)
+areg sd_scorerd t_superstar supXtop25_50, robust cluster(tourn) absorb(tourn)
+areg sd_scorerd t_superstar supXmid50_75, robust cluster(tourn) absorb(tourn)
+areg sd_scorerd handicap t_superstar supXbot75_90, robust cluster(tourn) absorb(tourn)
+areg sd_scorerd handicap t_superstar supXbot90_100, robust cluster(tourn) absorb(tourn)
+
+sort tourn player round
+/*
 //Superstar effect across categories and across rounds
 areg cv_drivdist handicap t_superstar tsupXround2 _I* supXcat1 supXcat1a supXcat2 , robust cluster(grouping_id) absorb(tourn)  
 areg cv_putts handicap t_superstar tsupXround2 _I* supXcat1 supXcat1a supXcat2 , robust cluster(grouping_id) absorb(tourn)
@@ -458,11 +513,10 @@ replace pt_superstar = 	1	if tourn ==	"verizon heritage_2006"
 replace pt_superstar = 	5	if tourn ==	"wachovia championship_2006"
 replace pt_superstar = 	4	if tourn ==	"zurich classic of new orleans_2006"
 
-/*
+
 foreach name in "phil mickelson","Len Mattiace", "Jim Furyk", "Bob Estes", "Chris Smith", "Tiger Woods"{
 	replace pt_superstar = pt_superstar - 1	if player == `name' & tourn ==	"advil western open_2002" }
-	*/
+
 	
-gen playerXyear = player * year
-xi i.tourncat
-areg scorerd t_superstar _I*, robust cluster(playerXyear) absorb(player)
+*/
+
